@@ -24,17 +24,17 @@ Prepare a pre-trained model and tokenizer following [this study](https://github.
 To fine tune a model, execute the following commands:
 
 ```
-$ python code/run_fune-tuning.py --model [path of the pre-trained model] --train_data_file [path of train data file (i.g. training_masked_code.txt)] --eval_data_file [path of evaluation data file (i.g. eval_masked_code.txt)] --output_root [directory to output the fine-tuned model] --tokenizer_name [path of tokenizer] --vocab_size [vocab_size]
+$ python code/run_fune-tuning.py --model [path of the pre-trained model] --train_data_file [path of a training dataset file (i.g. training_masked_code.txt)] --eval_data_file [path of a evaluation dataset file (i.g. eval_masked_code.txt)] --output_root [directory to output the fine-tuned model] --tokenizer_name [path of tokenizer] --vocab_size [vocab_size]
 ```
 
 The dataset for fine-tuning are provided in ./DatasetForDARoBERTa and ./DatasetForRoBERTa+.
 
-### 3. Evaluate the fine-tuned model. (WIP)
+### 3. Evaluate the fine-tuned model. 
 
 To evaluate the peformance of the model, execute the following commands:
 
 ```
-$ python code/~
+$ python code/evaluate.py --model [path of the pre-trained model] --test_data_file [path of a test dataset file] --output [directory to output test results]
 ```
 
 ### ex. We also provide code to create detaset for a specific Java repogitory or Java corpus. (WIP)
