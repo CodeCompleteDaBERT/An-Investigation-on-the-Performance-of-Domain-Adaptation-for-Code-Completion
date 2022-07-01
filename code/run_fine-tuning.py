@@ -592,7 +592,7 @@ def get_number_perfect_predictions(model: PreTrainedModel, tokenizer: PreTrained
 class Args:
 
     def __init__(self, run, train_data_file, eval_data_file, output_root, tokenizer_name, vocab_size,
-                 early_stop, logging_steps, should_continue
+                 early_stop, logging_steps, should_continue,model
     ):
         self.train_data_file = train_data_file
         self.eval_data_file = eval_data_file
@@ -601,7 +601,7 @@ class Args:
         self.early_stop = early_stop
         self.line_by_line = True
         self.should_continue = should_continue
-        self.model_name_or_path = './output/leafy-sweep-1' #None
+        self.model_name_or_path = model 
         self.mlm = True
         self.mlm_probability = 0.2
         self.tokenizer_name = tokenizer_name
@@ -706,11 +706,15 @@ def main():
         "--vocab_size", default=None, type=int, required=True, help="The input training data file (a text file)."
     )
 
+    parser.add_argument(
+        "--model", default=None, type=str, required=True, help="The input pretrained model (a dir with model parameters)."
+    )
+
     parsed_args = parser.parse_args()
     args = Args(
         run, parsed_args.train_data_file, parsed_args.eval_data_file,
         parsed_args.output_root, parsed_args.tokenizer_name, parsed_args.vocab_size,
-        parsed_args.early_stop, parsed_args.logging_steps, parsed_args.should_continue
+        parsed_args.early_stop, parsed_args.logging_steps, parsed_args.should_continue,parsed_args.model
     )
 
     if args.model_type in ["bert", "roberta", "distilbert", "camembert"] and not args.mlm:
